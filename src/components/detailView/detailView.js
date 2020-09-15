@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
+// Components
 import NumberFormat from 'react-number-format'
+import Loading from '../loading/loading'
+// Styles
 import './style.css'
 
 
@@ -19,7 +22,6 @@ export default function DetailView() {
             .then((data) => {
                 if (data.status !== 404) {
                     setCountry(data);
-                    console.log(data);
                     setLoaded(true);
                 } else {
                 }
@@ -86,11 +88,7 @@ export default function DetailView() {
         )
     } else {
         return (
-            <div className="detail-view">
-                <div className="container">
-                    <h2>Loading...</h2>
-                </div>
-            </div>
+            <Loading />
         )
     }
 

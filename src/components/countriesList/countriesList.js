@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import CountryCard from '../countryCard/countryCard';
 import { useDispatch, useSelector } from 'react-redux'
+// Components
+import CountryCard from '../countryCard/countryCard';
 import Search from '../search/search'
 import FilterByRegion from '../filterByRegion/filterByRegion'
+import Loading from '../loading/loading'
+// Styles
 import './style.css';
 
 export default function CountriesList() {
@@ -22,7 +25,6 @@ export default function CountriesList() {
 
         return state.countryList
     })
-    const [error, setError] = useState(false);
     const [isLoaded, setIsloaded] = useState(false);
 
     const countriesUrl = "https://restcountries.eu/rest/v2/";
@@ -33,21 +35,19 @@ export default function CountriesList() {
     }, []);
 
     function getCountries() {
-        let countriesURL = `${countriesUrl}`
+        let countriesURL = countriesUrl
         fetch(countriesURL)
             .then(response => response.json())
             .then((data) => {
                 if (data.status !== 404 && data.status !== 400) {
-                    setError(false);
                     setIsloaded(true);
                     dispatch({
                         type: "SET_COUNTRY_LIST",
                         payload: data
                     })
-                } else {
-                    setError(true);
                 }
-            }).catch(error => { console.log(error) });
+            })
+            .catch(error => { console.log(error) });
     }
 
 
@@ -72,7 +72,7 @@ export default function CountriesList() {
         )
     } else {
         return (
-            <h2 className="not-found">Loading...</h2>
+            <Loading />
         )
     }
 

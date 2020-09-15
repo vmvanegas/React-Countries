@@ -1,20 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
 import './style.css';
-
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
-
 
 export default function Search() {
 
-    const query = useQuery();
-    const history = useHistory();
     const dispatch = useDispatch();   
     const filterName = useSelector((state) => state.filterName)
+    const filterRegion = useSelector((state) => state.filterRegion)
     const options = [
         {
             name: "Unfiltered",
@@ -41,7 +33,7 @@ export default function Search() {
             value: "Oceania"
         },
     ]
-    const [currentSelectValue, setCurrentSelectValue] = useState(query.get("region") || "Filter by region");
+    const [currentSelectValue, setCurrentSelectValue] = useState(filterRegion || "Filter by region");
 
     useEffect(()=>{
         closeSelectEventListener()
@@ -49,7 +41,6 @@ export default function Search() {
 
     function filterCountriesByRegion({name, value}){
         setCurrentSelectValue(name)        
-        history.push(`?region=${value}`);
         dispatch({
             type: "FILTER_COUNTRY_BY_REGION",
             payload: value

@@ -11,9 +11,11 @@ const initialState = {
   
   function reducer(state, action) {
     switch (action.type) {
+      
       case "SET_COUNTRY_LIST": {
         return { ...state, countryList: action.payload }
       }
+
       case "FILTER_COUNTRY_BY_NAME": {
         let countryListByName
         if (state.filterRegion !== "") {
@@ -29,6 +31,7 @@ const initialState = {
         }        
         return { ...state, countryListByName, filterName: action.payload}
       }
+
       case "FILTER_COUNTRY_BY_REGION": {  
           let countryListByRegion = state.countryList.filter((country) => {
             return country.region === action.payload
@@ -36,6 +39,7 @@ const initialState = {
           )  
         return { ...state, countryListByRegion, filterRegion: action.payload }
       }
+
       default: {
         return state
       }
