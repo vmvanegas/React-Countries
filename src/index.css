@@ -1,0 +1,79 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-text-color: #333333;
+  --main-bg-color: #fafafa;
+  --secondary-bg-color: #ffffff;
+  --secondary-text-color: #a9a9a9;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark-mode {
+  --main-text-color: #dddddd;
+  --main-bg-color: #212e37;
+  --secondary-bg-color: #2b3743;
+  --secondary-text-color: #dddddd;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:  rgba(0, 0, 0, 0.2);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-text-color); 
+}
+
+ul {
+  list-style: none;
+}
+
+input:focus, select:focus, button:focus {
+  outline: none;
+}
+
+.container {
+  max-width: 1291px;
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@media(max-width: 991px){
+  html {
+    font-size: 14px;
+  }
+}
