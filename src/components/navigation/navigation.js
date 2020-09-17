@@ -15,7 +15,7 @@ function Navigation() {
         <header className="navigation">
             <div className="navigation-content">
                 <div className="logo">
-                    <button onClick={() => { history.push("/countries-list") }}>
+                    <button onClick={() => { history.push("/React-Countries") }}>
                         <h1>Where in the world?</h1>
                     </button>
                 </div>

@@ -12,7 +12,7 @@ export default function CountryCard(props) {
     let history = useHistory();
 
     function seeDetails(country) {
-        history.push(`/countries-list/${country.alpha3Code}`);
+        history.push(`/React-Countries/${country.alpha3Code}`);
     }
 
     return (
