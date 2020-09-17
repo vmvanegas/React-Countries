@@ -13,9 +13,9 @@ function App() {
                 <BrowserRouter>
                     <Navigation />
                     <Switch>
-                        <Route exact path="/countries-list" component={CountriesList} />
-                        <Route path="/countries-list/:code" component={DetailView} />
-                        <Redirect from="/" to="/countries-list" />
+                        <Route exact path="/React-Countries" component={CountriesList} />
+                        <Route path="/React-Countries/:code" component={DetailView} />
+                        <Redirect from="/" to="/React-Countries" />
                     </Switch>
                 </BrowserRouter>
             </Provider>
