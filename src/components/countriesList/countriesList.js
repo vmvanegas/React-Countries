@@ -30,13 +30,10 @@ export default function CountriesList() {
     const countriesUrl = "https://restcountries.eu/rest/v2/";
 
     useEffect(() => {
-        getCountries();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    function getCountries() {
+        
+    const getCountries = async ()=> {
         let countriesURL = countriesUrl
-        fetch(countriesURL)
+        await fetch(countriesURL)
             .then(response => response.json())
             .then((data) => {
                 if (data.status !== 404 && data.status !== 400) {
@@ -49,6 +46,8 @@ export default function CountriesList() {
             })
             .catch(error => { console.log(error) });
     }
+        getCountries();
+    }, [dispatch]);
 
 
     if(isLoaded){

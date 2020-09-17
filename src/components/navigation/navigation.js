@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './style.css';
 
 function Navigation() {
@@ -29,4 +29,4 @@ function Navigation() {
         </header>
     )
 }
-export default withRouter(Navigation);
+export default Navigation;

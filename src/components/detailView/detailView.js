@@ -17,7 +17,8 @@ export default function DetailView() {
     const [isLoaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        fetch(`${countryURL}${code}`)
+        const getCountry = async()=>{
+            await fetch(`${countryURL}${code}`)
             .then(response => response.json())
             .then((data) => {
                 if (data.status !== 404) {
@@ -26,6 +27,8 @@ export default function DetailView() {
                 } else {
                 }
             })
+        }
+        getCountry()
     }, [code, countryURL]);
 
     const getArrayWithCommas = (array) =>{
