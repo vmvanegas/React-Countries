@@ -10,7 +10,7 @@ import './style.css'
 export default function DetailView() {
 
     let { code } = useParams();
-    const countryURL = "https://restcountries.eu/rest/v2/alpha/";
+    const countryURL = "https://restcountries.com/v3.1/alpha/";
     const history = useHistory();
 
     const [country, setCountry] = useState({});
@@ -18,11 +18,13 @@ export default function DetailView() {
 
     useEffect(() => {
         const getCountry = async()=>{
-            await fetch(`${countryURL}${code}`)
+            
+            await fetch(`${countryURL}${code.toLowerCase()}`)
             .then(response => response.json())
             .then((data) => {
+                console.log(data)
                 if (data.status !== 404) {
-                    setCountry(data);
+                    setCountry(data[0]);
                     setLoaded(true);
                 } else {
                 }
@@ -31,10 +33,8 @@ export default function DetailView() {
         getCountry()
     }, [code, countryURL]);
 
-    const getArrayWithCommas = (array) =>{
-        let listNames = [];
-        listNames = array.map(item=>item.name)        
-        return listNames.join(", ");
+    const getArrayWithCommas = (array) =>{   
+        return Object.keys(array)
     }
 
     if (isLoaded) {
@@ -46,17 +46,17 @@ export default function DetailView() {
                     </div>
                     <div className="detail-wrapper">
                         <div className="country-img">
-                            <img src={country.flag} alt={country.name}/>
+                            <img src={country.flags.svg} alt={country.flags.alt}/>
                         </div>
                         <div className="country-info">
                             <div className="info-wrapper">
                                 <div className="title">
-                                    <h2>{country.name}</h2>
+                                    <h2>{country.name.common}</h2>
                                 </div>
                                 <div className="info">
                                     <div className="left-info">
                                         <ul>
-                                            <li><b>Native name:</b> {country.nativeName}</li>
+                                            <li><b>Native name:</b> {country.name.common}</li>
                                             <li><b>Population: </b>
                                                 <NumberFormat value={country.population} displayType={'text'} thousandSeparator={true} renderText={value => <span> {value}</span>} />
                                             </li>
@@ -67,19 +67,19 @@ export default function DetailView() {
                                     </div>
                                     <div className="right-info">
                                         <ul>
-                                            <li><b>Top level domains:</b> {country.topLevelDomain}</li>
+                                            <li><b>Top level domains:</b> {country.tld}</li>
                                             <li><b>Currencies: </b>
-                                                {getArrayWithCommas(country["currencies"])}
+                                                {Object.keys(country.currencies)}
                                             </li>
                                             <li><b>Languages: </b>
-                                                {getArrayWithCommas(country["languages"])}
+                                                {Object.values(country.languages)}
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div className="bottom-info">
                                     <b>Border countries: </b>
-                                    {country["borders"].map((item, index) => (
+                                    {country.borders?.map((item, index) => (
                                         <label className="chip" key={index}>{item}</label>
                                     ))}                                            
                                 </div>

@@ -20,12 +20,12 @@ const initialState = {
         let countryListByName
         if (state.filterRegion !== "") {
           countryListByName = state.countryListByRegion.filter((country) => {
-            return country.name.toLowerCase().includes(action.payload.toLowerCase())
+            return country.name.common.toLowerCase().includes(action.payload.toLowerCase())
             }
           )
         } else {
           countryListByName = state.countryList.filter((country) => {
-            return country.name.toLowerCase().includes(action.payload.toLowerCase())
+            return country.name.common.toLowerCase().includes(action.payload.toLowerCase())
             }
           )
         }        

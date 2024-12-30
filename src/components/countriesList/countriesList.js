@@ -27,7 +27,7 @@ export default function CountriesList() {
     })
     const [isLoaded, setIsloaded] = useState(false);
 
-    const countriesUrl = "https://restcountries.eu/rest/v2/";
+    const countriesUrl = "https://restcountries.com/v3.1/all";
 
     useEffect(() => {
         
@@ -38,8 +38,9 @@ export default function CountriesList() {
             .then((data) => {
                 if (data.status !== 404 && data.status !== 400) {
                     setIsloaded(true);
+                    console.log(data)
                     dispatch({
-                        type: "SET_COUNTRY_LIST",
+                        type: "SET_COUNTRY_LIST", 
                         payload: data
                     })
                 }

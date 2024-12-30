@@ -12,14 +12,14 @@ export default function CountryCard(props) {
     let history = useHistory();
 
     function seeDetails(country) {
-        history.push(`/React-Countries/${country.alpha3Code}`);
+        history.push(`/React-Countries/${country.cca3}`);
     }
 
     return (
         <div className="countries-card" onClick={() => { seeDetails(country) }}>
-            <img loading="lazy" src={country.flag} alt={country.name}/>
+            <img loading="lazy" src={country.flags.svg} alt={country.name.common}/>
             <div className="card-description">
-                <h2>{country.name}</h2>
+                <h2>{country.name.common}</h2>
                 <ul className="card-info">
                     <li>
                         <b>Population: </b>
